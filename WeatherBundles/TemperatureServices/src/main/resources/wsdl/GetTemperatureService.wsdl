@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jasmine.com/GetTemperatureService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GetTemperatureService" targetNamespace="http://jasmine.com/GetTemperatureService/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://jasmine.com/GetTemperatureService/">
+      <xsd:element name="getTemperature">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTemperatureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getTemperatureRequest">
+    <wsdl:part element="tns:getTemperature" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getTemperatureResponse">
+    <wsdl:part element="tns:getTemperatureResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="GetTemperatureService">
+    <wsdl:operation name="getTemperature">
+      <wsdl:input message="tns:getTemperatureRequest"/>
+      <wsdl:output message="tns:getTemperatureResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetTemperatureServiceSOAP" type="tns:GetTemperatureService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getTemperature">
+      <soap:operation soapAction="http://jasmine.com/GetTemperatureService/getTemperature"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetTemperatureService">
+    <wsdl:port binding="tns:GetTemperatureServiceSOAP" name="GetTemperatureServiceSOAP">
+      <soap:address location="http://jasmine.com/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
